@@ -32,14 +32,17 @@ export default function Index() {
     <div className="min-h-screen font-nunito" style={{ background: "linear-gradient(160deg, #FFF9E6 0%, #FFF0F5 50%, #F0FFFE 100%)" }}>
       <Confetti active={confetti} />
 
-      {/* Decorative blobs */}
+      {/* Background image */}
       <div
-        className="blob-decoration fixed w-64 h-64 opacity-20 pointer-events-none"
-        style={{ background: "radial-gradient(circle, #FFD93D, #FF6B9D)", top: -80, right: -80, zIndex: 0 }}
-      />
-      <div
-        className="blob-decoration fixed w-48 h-48 opacity-15 pointer-events-none"
-        style={{ background: "radial-gradient(circle, #C084FC, #38BDF8)", bottom: 80, left: -40, zIndex: 0, animationDelay: "4s" }}
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url(https://cdn.poehali.dev/projects/cdc098af-7bf4-43b8-96fe-edf47bcc8c0e/bucket/4e891512-4342-478b-b9bd-6d2270f4d43c.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center bottom",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.18,
+          zIndex: 0,
+        }}
       />
 
       {/* Header */}
