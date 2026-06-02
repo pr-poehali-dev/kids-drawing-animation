@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
+const MASCOT_URL = "https://cdn.poehali.dev/projects/cdc098af-7bf4-43b8-96fe-edf47bcc8c0e/bucket/7e2ea9d3-0128-4926-a770-d981d61ee634.jpeg";
+
 // ======== HELPER TAB ========
 export function HelperTab() {
   const [step, setStep] = useState(-1);
@@ -16,10 +18,21 @@ export function HelperTab() {
     <div className="flex flex-col gap-5 animate-slide-up">
       <div className="flex flex-col items-center gap-4 py-4">
         <div
-          className="w-24 h-24 rounded-full flex items-center justify-center text-5xl animate-float"
-          style={{ background: "linear-gradient(135deg, #FFD93D, #FF6B9D)", boxShadow: "0 8px 32px rgba(255,107,157,0.4)" }}
+          className="relative animate-float"
+          style={{ filter: "drop-shadow(0 8px 24px rgba(255,107,157,0.45))" }}
         >
-          😊
+          <div
+            className="w-32 h-32 rounded-full overflow-hidden"
+            style={{ border: "3px solid #FFD93D" }}
+          >
+            <img
+              src={MASCOT_URL}
+              alt="Лучик"
+              className="w-full h-full object-cover object-top"
+              style={{ transform: "scale(1.2) translateY(6px)" }}
+            />
+          </div>
+          <span className="absolute -bottom-1 -right-1 text-2xl">✨</span>
         </div>
         <div className="text-center">
           <h2 className="text-2xl font-black font-nunito">Привет, я Лучик!</h2>

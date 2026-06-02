@@ -25,9 +25,17 @@ export function Confetti({ active }: { active: boolean }) {
   );
 }
 
+const MASCOT_URL = "https://cdn.poehali.dev/projects/cdc098af-7bf4-43b8-96fe-edf47bcc8c0e/bucket/7e2ea9d3-0128-4926-a770-d981d61ee634.jpeg";
+
+const MOOD_OVERLAY: Record<string, string> = {
+  happy: "",
+  excited: "⭐",
+  thinking: "💭",
+  sleeping: "💤",
+};
+
 // ======== MASCOT ========
 export function Mascot({ mood, message }: { mood: "happy" | "excited" | "thinking" | "sleeping"; message?: string }) {
-  const faces = { happy: "😊", excited: "🤩", thinking: "🤔", sleeping: "😴" };
   return (
     <div className="flex flex-col items-start gap-2">
       {message && (
@@ -36,14 +44,29 @@ export function Mascot({ mood, message }: { mood: "happy" | "excited" | "thinkin
         </div>
       )}
       <div className="flex items-center gap-3">
-        <div
-          className="w-16 h-16 rounded-full flex items-center justify-center text-3xl animate-float cursor-pointer select-none"
-          style={{
-            background: "linear-gradient(135deg, #FFD93D, #FF6B9D)",
-            boxShadow: "0 4px 20px rgba(255, 107, 157, 0.4)",
-          }}
-        >
-          {faces[mood]}
+        <div className="relative flex-shrink-0 animate-float cursor-pointer select-none">
+          <div
+            className="w-16 h-16 rounded-full overflow-hidden"
+            style={{
+              boxShadow: "0 4px 20px rgba(255, 107, 157, 0.45)",
+              border: "2.5px solid #FFD93D",
+            }}
+          >
+            <img
+              src={MASCOT_URL}
+              alt="Лучик"
+              className="w-full h-full object-cover object-top"
+              style={{ transform: "scale(1.15) translateY(4px)" }}
+            />
+          </div>
+          {MOOD_OVERLAY[mood] && (
+            <span
+              className="absolute -top-1 -right-1 text-base leading-none"
+              style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.2))" }}
+            >
+              {MOOD_OVERLAY[mood]}
+            </span>
+          )}
         </div>
         <div>
           <p className="font-black text-sm font-nunito text-foreground">Лучик</p>
