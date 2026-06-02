@@ -4,8 +4,14 @@ import { Confetti, BottomNav } from "@/components/app/Mascot";
 import { EditorTab } from "@/components/app/EditorTab";
 import { GalleryTab, VoiceTab } from "@/components/app/GalleryVoiceTab";
 import { HelperTab, ProfileTab, SettingsTab } from "@/components/app/HelperProfileSettingsTab";
+import { AuthUser } from "@/components/app/AuthScreen";
 
-export default function Index() {
+interface IndexProps {
+  user: AuthUser;
+  onLogout: () => void;
+}
+
+export default function Index({ user, onLogout }: IndexProps) {
   const [tab, setTab] = useState<Tab>("editor");
   const [confetti, setConfetti] = useState(false);
 
@@ -73,10 +79,12 @@ export default function Index() {
             <span className="text-xs font-bold font-nunito" style={{ color: "#B45309" }}>42 звезды</span>
           </div>
           <button
-            className="w-9 h-9 rounded-xl flex items-center justify-center text-lg"
-            style={{ background: "hsl(var(--muted))" }}
+            onClick={onLogout}
+            title="Выйти"
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-base font-bold font-nunito"
+            style={{ background: "hsl(var(--muted))", color: "hsl(var(--foreground))" }}
           >
-            🧒
+            {user.name ? user.name[0].toUpperCase() : "👤"}
           </button>
         </div>
       </header>

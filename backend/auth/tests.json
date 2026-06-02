@@ -1,0 +1,39 @@
+{
+  "tests": [
+    {
+      "name": "Send OTP by email",
+      "method": "POST",
+      "path": "/?action=send-code",
+      "body": {"login": "test@example.com"},
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Send OTP by phone",
+      "method": "POST",
+      "path": "/?action=send-code",
+      "body": {"login": "+79991234567"},
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true, "login_type": "phone"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Wrong code returns 400",
+      "method": "POST",
+      "path": "/?action=verify",
+      "body": {"login": "test@example.com", "code": "000000"},
+      "expectedStatus": 400,
+      "expectedBody": {"error": "Неверный или устаревший код"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Me without token returns 401",
+      "method": "GET",
+      "path": "/?action=me",
+      "expectedStatus": 401,
+      "expectedBody": {"error": "Не авторизован"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
